@@ -19,7 +19,7 @@ public class APIController {
 
 
        HttpRequest request = HttpRequest.newBuilder()
-               .uri(new URI("https://v3.football.api-sports.io/standings?league=39&season=2019&" + team))// + value = GUI
+               .uri(new URI("https://v3.football.api-sports.io/standings?league=39&season=2019&team=" + team))// + value = GUI
                .header("x-rapidapi-key", api_key)
                .header("x-rapidapi-host", "v3.football.api-sports.io")
                .GET()
@@ -40,8 +40,8 @@ public class APIController {
        // Position i ligaen
 
        // smid det i database tabel metode klader dbhandler metode
+       // få db til at retunerer værdierne til GUI
        // db returner values
-
 
 
 
