@@ -16,7 +16,7 @@ public class APIController {
 
    public static void check(String team) throws IOException, InterruptedException, URISyntaxException {
        HttpClient client = HttpClient.newHttpClient();
-
+       
 
        HttpRequest request = HttpRequest.newBuilder()
                .uri(new URI("https://v3.football.api-sports.io/standings?league=39&season=2019&team=" + team))// + value = GUI
@@ -31,8 +31,10 @@ public class APIController {
 
        System.out.println(response.body());
 
-       // Split det vi er interessert i;
+       // Split det vi er interessert i:
 
+
+       
        // Navn på holdet
        // ligaen
        // Årstal
