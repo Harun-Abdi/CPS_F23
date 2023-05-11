@@ -21,8 +21,9 @@ public class APIController {
 
     }
 
-   public static void check(String team) throws IOException, InterruptedException, URISyntaxException {
-       HttpClient client = HttpClient.newHttpClient();
+   public static void check(String team) throws IOException, InterruptedException, URISyntaxException, JSONException {
+
+        HttpClient client = HttpClient.newHttpClient();
 
 
        HttpRequest request = HttpRequest.newBuilder()
@@ -36,7 +37,59 @@ public class APIController {
        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
 
-       System.out.println(response.body());
+
+       String responseBody = response.body();
+
+       JSONObject json = new JSONObject(responseBody);
+
+       // nested json
+
+       /*
+        However, in the given JSON structure,
+        the "name" key is nested inside other objects and arrays.
+        To extract the value of "name" correctly, you need to navigate through the JSON structure.
+        Here's an updated code snippet that should work for your case:
+        */
+       String name = json.getJSONArray("response")
+               .getJSONObject(0)
+               .getJSONObject("league")
+               .getJSONArray("standings")
+               .getJSONArray(0)
+               .getJSONObject(0)
+               .getJSONObject("team")
+               .getString("name");
+       int points = json.getJSONArray("response")
+               .getJSONObject(0)
+               .getJSONObject("league")
+               .getJSONArray("standings")
+               .getJSONArray(0)
+               .getJSONObject(0)
+               .getInt("points");
+
+       String group = json.getJSONArray("response")
+               .getJSONObject(0)
+               .getJSONObject("league")
+               .getJSONArray("standings")
+               .getJSONArray(0)
+               .getJSONObject(0)
+               .getString("group");
+
+       int season = json.getJSONArray("response")
+               .getJSONObject(0)
+               .getJSONObject("league")
+               .getInt("season");
+
+       int rank = json.getJSONArray("response")
+               .getJSONObject(0)
+               .getJSONObject("league")
+               .getJSONArray("standings")
+               .getJSONArray(0)
+               .getJSONObject(0)
+               .getInt("rank");
+
+       System.out.println(name + " " + group + "" +  points + " " + season + " " + rank);
+       DBController.setData(name,group,season,points,rank);
+
 
        // Split det vi er interessert i:
 
@@ -57,6 +110,7 @@ public class APIController {
 
 
    }
+   /*
     public static String handlePostRequest(String json) throws IOException, JSONException {
 //String json = "{\"State\":1,\"Program name\":\"MoveToAssemblyOperation\"}";
         System.out.println("landet");
@@ -92,5 +146,7 @@ public class APIController {
 
         return json;
     }
+
+    */
    }
 
