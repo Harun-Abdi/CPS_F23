@@ -18,6 +18,8 @@ public class APIController {
     private static final OkHttpClient client = new OkHttpClient();
 
     public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException {
+        // for at finde alle id'er kald check metode fjern team i SERVER_URL og fjern + team
+        /
 
     }
 
@@ -87,7 +89,7 @@ public class APIController {
                .getJSONObject(0)
                .getInt("rank");
 
-       System.out.println(name + " " + group + "" +  points + " " + season + " " + rank);
+       System.out.println(name + " " + group + " " +  points + " " + season + " " + rank);
        DBController.setData(name,group,season,points,rank);
 
 

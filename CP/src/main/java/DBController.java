@@ -5,13 +5,13 @@ import java.sql.*;
         public static Connection c;
 
         static String user = "root";
-        static String password = "your_new_password";
-        static String url = "jdbc:mysql://127.0.0.1:3308/";
+        static String password = "Vithe!098";
+        static String url = "jdbc:mysql://localhost:3306/";
 
         public static void main(String[] args) {
             getConnection(url, user, password);
-           //initialiseDatabase();
-            //initialiseTable();
+           initialiseDatabase();
+           initialiseTable();
         }
 
         //DB connection
@@ -30,11 +30,11 @@ import java.sql.*;
         // Laver databasen
         // Tjekker om databasen findes, hvis ja så brug samme database, hvis nej så lav en database med det navn
         public static void initialiseDatabase() {
-            Connection connection = getConnection("jdbc:mysql://127.0.0.1:3306/", user, password);
+            Connection connection = getConnection("jdbc:mysql://localhost:3306/", user, password);
 
             String checkDatabase = "SHOW DATABASES LIKE 'Information';";
             String useDatabase = "USE Information";
-            String initializeDatabase = "CREATE DATABASE 'Information';";
+            String initializeDatabase = "CREATE DATABASE Information";
             try {
                 if (connection != null) { // check if connection is not null
                     ResultSet resultSet = connection.prepareStatement(checkDatabase).executeQuery();
@@ -71,16 +71,16 @@ import java.sql.*;
                     "position INT NOT NULL\n" +
                     ");";
             try {
-                DBController.getConnection("jdbc:mysql://127.0.0.1:3306/Information", user, password).prepareStatement(initializerTable).executeUpdate();
+                DBController.getConnection("jdbc:mysql://localhost:3306/Information", user, password).prepareStatement(initializerTable).executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
         // Send data TO Database
         public static void setData(String teamName, String liga, int year, int points, int position){
-            String statement = "INSERT INTO brewer_backlog (teamName, liga, year, points, position) VALUES ('" + teamName + "', '" + liga + "', '" + year + "', '" + points + "', '" + position + "');";
+            String statement = "INSERT INTO stats_table (teamName, liga, year, points, position) VALUES ('" + teamName + "', '" + liga + "', '" + year + "', '" + points + "', '" + position + "');";
             try {
-                DBController.getConnection("jdbc:mysql://127.0.0.1:3306/Information", "***", "***").createStatement().executeUpdate(statement);
+                DBController.getConnection("jdbc:mysql://localhost:3306/Information", user, password).createStatement().executeUpdate(statement);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -96,15 +96,15 @@ import java.sql.*;
         }
 */
         // Her skal GUI tage fra
-        /*
+
         public static String getData() {
             PreparedStatement ps = null;
             ResultSet rs = null;
             StringBuilder sb = new StringBuilder();
-            String statement = "SELECT * FROM brewer_backlog ORDER BY time_started ASC LIMIT 10;";
+            String statement = "SELECT * FROM stats_table;";
 
             try {
-                ps = getConnection("jdbc:mysql://localhost:3306/backlog", user, password).prepareStatement(statement);
+                ps = getConnection("jdbc:mysql://localhost:3306/Information", user, password).prepareStatement(statement);
                 rs = ps.executeQuery();
                 while(rs.next()){
                     sb.append(rs.getString(1)).append(", ").append(rs.getString(2)).append(", ").append(rs.getString(3)).append(", ").append(rs.getString(4)).append(", ").append(rs.getString(5)).append("\n");
@@ -115,6 +115,6 @@ import java.sql.*;
             return sb.toString();
         }
 
-         */
+
     }
 
