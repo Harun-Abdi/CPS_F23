@@ -6,12 +6,12 @@ import java.sql.*;
 
         static String user = "root";
         static String password = "your_new_password";
-        static String url = "jdbc:mysql://localhost:3306/";
+        static String url = "jdbc:mysql://127.0.0.1:3308/";
 
         public static void main(String[] args) {
             getConnection(url, user, password);
-           initialiseDatabase();
-            initialiseTable();
+           //initialiseDatabase();
+            //initialiseTable();
         }
 
         //DB connection
@@ -30,7 +30,7 @@ import java.sql.*;
         // Laver databasen
         // Tjekker om databasen findes, hvis ja så brug samme database, hvis nej så lav en database med det navn
         public static void initialiseDatabase() {
-            Connection connection = getConnection("jdbc:mysql://localhost:3306/", user, password);
+            Connection connection = getConnection("jdbc:mysql://127.0.0.1:3306/", user, password);
 
             String checkDatabase = "SHOW DATABASES LIKE 'Information';";
             String useDatabase = "USE Information";
@@ -71,7 +71,7 @@ import java.sql.*;
                     "position INT NOT NULL\n" +
                     ");";
             try {
-                DBController.getConnection("jdbc:mysql://localhost:3306/Information", user, password).prepareStatement(initializerTable).executeUpdate();
+                DBController.getConnection("jdbc:mysql://127.0.0.1:3306/Information", user, password).prepareStatement(initializerTable).executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -80,7 +80,7 @@ import java.sql.*;
         public static void setData(String teamName, String liga, int year, int points, int position){
             String statement = "INSERT INTO brewer_backlog (teamName, liga, year, points, position) VALUES ('" + teamName + "', '" + liga + "', '" + year + "', '" + points + "', '" + position + "');";
             try {
-                DBController.getConnection("jdbc:mysql://localhost:3306/Information", "***", "***").createStatement().executeUpdate(statement);
+                DBController.getConnection("jdbc:mysql://127.0.0.1:3306/Information", "***", "***").createStatement().executeUpdate(statement);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
