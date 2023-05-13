@@ -5,7 +5,7 @@ import java.sql.*;
         public static Connection c;
 
         static String user = "root";
-        static String password = "Vithe!098";
+        static String password = "your_new_password";
         static String url = "jdbc:mysql://localhost:3306/";
 
         public static void main(String[] args) {

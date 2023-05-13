@@ -19,7 +19,7 @@ public class APIController {
 
     public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException {
         // for at finde alle id'er kald check metode fjern team i SERVER_URL og fjern + team
-        /
+
 
     }
 

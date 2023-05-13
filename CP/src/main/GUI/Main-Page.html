@@ -14,12 +14,8 @@
  1. Lav en selector ligesom i semesterprojekt
  2. Alle hold ind med deres id (20 hold, 20 foreskellige id'er) = ID skal skrives ind i value
  3. Navn på option = navn på holdet
- !-->
 
-
-<button value="40" id="Liverpool" type="button" onclick="loadCurrentState()"> Liverpool</button>
-
-<select id="Teams" onchange="loadCurrentState()">
+ <select id="Teams" onchange="loadCurrentState()">
     <option selected disabled > Choose Operation ... </option>
     <option value="40">Liverpool</option>
     <option value="50">MoveToAssemblyOperationMove</option>
@@ -30,6 +26,13 @@
     <option value="PutWarehouseOperationActivate">PutWarehouseOperationActivate</option>
 
 </select>
+
+ !-->
+
+
+<button value="40" id="Liverpool" type="button" onclick="loadCurrentState()"> Liverpool</button>
+
+
 
 <button onclick="loadData()">Load Data</button>
 <br>
