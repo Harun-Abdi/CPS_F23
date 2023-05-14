@@ -13,7 +13,15 @@ import java.util.regex.Pattern;
 
 public class Handler implements HttpHandler {
 
-    public void handle(HttpExchange httpExchange) throws IOException { //This method handles the http exchange, by checking whether it is a GET or a POST request.
+    /**
+     *
+     * @param httpExchange the exchange containing the request from the
+     *                 client and used to send the response
+     * @throws IOException
+     *     This method handles the http exchange, by checking whether if it is a GET request
+     */
+
+    public void handle(HttpExchange httpExchange) throws IOException {
 
         String requestParamValue = null;
 
@@ -32,15 +40,23 @@ public class Handler implements HttpHandler {
     }
 
 
+    /**
+     The functionality of the following lines of code is to firstly
+     take the request URL and split it up and check whether the url contains a number in the teams array.
+     If it does then call the check method in api controller.
+     Else if it does not check whether it contains data, if it does then call the getData method in the DBController class
+
+     */
     static String getValue(HttpExchange httpExchange) throws IOException, InterruptedException, URISyntaxException, JSONException {
 
-        // smid id på holdene i et array
-        // lav en enkel if sætning der tjekker om url har et af de tal der er i arrayet
-        // manuel løsning der kunne automatiseres
+
         int[] teams = {40,50,33,49,46,47,39
                         ,42,62,44,41,45,34,52,
-                        51,48,66,35,38,71}; // smid alle id'er på holdene her
-        String url = httpExchange.getRequestURI().toString(); // get the URL from the request
+                        51,48,66,35,38,71};
+
+
+
+        String url = httpExchange.getRequestURI().toString();
 
         String regex = String.join("|", Arrays.stream(teams).mapToObj(String::valueOf).toArray(String[]::new));
 
@@ -71,17 +87,25 @@ public class Handler implements HttpHandler {
         return "fault 2";
 
     }
+
+    /**
+     This methods checks to see if requestParamValue is null, and if it is, appends the String instead of the value.
+     Encode the String created as HTML content.
+     We then set the "Access-Control-Allow-Origin to *, which allows any domain to access the resource
+
+     */
+
     private void handleResponse(HttpExchange httpExchange, String requestParamValue) throws IOException {
         String encoding = "UTF-8";
         OutputStream outputStream = httpExchange.getResponseBody();
         StringBuilder htmlBuilder = new StringBuilder();
 
 
-        htmlBuilder.append(Objects.requireNonNullElse(requestParamValue, "Object/value returned is null"));//This checks to see if requestParamValue is null, and if it is, appends the String instead of the value.
+        htmlBuilder.append(Objects.requireNonNullElse(requestParamValue, "Object/value returned is null"));
 
-        String htmlResponse = StringEscapeUtils.escapeHtml4(htmlBuilder.toString());//Here we encode the String created as HTML content.
+        String htmlResponse = StringEscapeUtils.escapeHtml4(htmlBuilder.toString());
 
-        httpExchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*"); //This line needs documentation, but should really be focused on, as it is a huge security breach.
+        httpExchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
         httpExchange.getResponseHeaders().set("Content-Type", "text/html; charset=" + encoding);
         httpExchange.sendResponseHeaders(200, htmlResponse.length());
         outputStream.write(htmlResponse.getBytes());

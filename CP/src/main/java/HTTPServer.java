@@ -8,6 +8,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class HTTPServer {
 
+    // For this main method we create and host a server with the hostname localhost and set it to running on port 8001.
     public static void main(String[] args) {
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8001), 0);

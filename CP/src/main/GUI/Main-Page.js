@@ -1,3 +1,6 @@
+/**
+ * LoadCurrentState is a method that send a http request with the desired value from the selector in the HTML file
+ */
 
 function loadCurrentState() {
     const xhttp = new XMLHttpRequest();
@@ -8,6 +11,9 @@ function loadCurrentState() {
     xhttp.send();
 }
 
+/**
+ * Loads the data into a textfield area
+ */
 function loadData() {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
