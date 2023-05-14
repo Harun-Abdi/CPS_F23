@@ -61,6 +61,7 @@ import java.sql.*;
 
 
         //Laver tabel
+        // Kun lav tabel hvis den ikke findes
         public static void initialiseTable() {
             String initializerTable = "CREATE TABLE stats_table (\n" +
                     "id INT AUTO_INCREMENT PRIMARY KEY,\n" +

@@ -17,11 +17,7 @@ public class APIController {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static final OkHttpClient client = new OkHttpClient();
 
-    public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException {
-        // for at finde alle id'er kald check metode fjern team i SERVER_URL og fjern + team
 
-
-    }
 
    public static void check(String team) throws IOException, InterruptedException, URISyntaxException, JSONException {
 
