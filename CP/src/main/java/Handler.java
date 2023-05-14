@@ -36,8 +36,10 @@ public class Handler implements HttpHandler {
 
         // smid id på holdene i et array
         // lav en enkel if sætning der tjekker om url har et af de tal der er i arrayet
-
-        int[] teams = {40,50}; // smid alle id'er på holdene her
+        // manuel løsning der kunne automatiseres
+        int[] teams = {40,50,33,49,46,47,39
+                        ,42,62,44,41,45,34,52,
+                        51,48,66,35,38,71}; // smid alle id'er på holdene her
         String url = httpExchange.getRequestURI().toString(); // get the URL from the request
 
         String regex = String.join("|", Arrays.stream(teams).mapToObj(String::valueOf).toArray(String[]::new));

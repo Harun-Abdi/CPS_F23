@@ -1,3 +1,7 @@
+body {
+    background-color: #236ad5;
+}
+
 .myButton {
     box-shadow:inset 0px 1px 0px 0px #97c4fe;
     background: #3d94f6 linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);

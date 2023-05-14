@@ -1,12 +1,10 @@
+
 function loadCurrentState() {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            //get element by id = skal være id på vores selector i stedet for
-            document.getElementById("Teams").innerHTML = this.responseText;
-        }
+
     };
-    xhttp.open("GET", "http://localhost:8001/team=" +document.getElementById("Liverpool").value , true); // post istedet for get
+    xhttp.open("GET", "http://localhost:8001/team=" +document.getElementById("Teams").value , true); // post istedet for get
     xhttp.send();
 }
 

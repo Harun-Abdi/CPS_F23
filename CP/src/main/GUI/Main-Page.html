@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <title>HEllo</title>
     <script src=Main-Page.js></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 </head>
+
+
 <link rel="stylesheet" type="text/css" href="style-page.css">
-<div id="chart_div"></div>
 <body>
-<style>
-    body {
-        background-color: #236ad5;
-    }
-</style>
+
 <h3 > Select a team </h3>
+
 <div class="container">
 
+
+
     <select id="Teams" onchange="loadCurrentState()">
-        <option selected disabled > Choose Operation ... </option>
+        <option selected disabled > Pick a team ... </option>
         <option value="40">Liverpool</option>
         <option value="50">Manchester City</option>
         <option value="33">Manchester United</option>
@@ -43,17 +42,22 @@
 
     </select>
 
-
-
-    <button href="#" class="myButton" onclick="fetchDataFromDatabase()">Load Data</button>
-
-
-    <button href="#" class="myButton" onclick="loadData()">Load Data</button>
+    <button href="#" class="myButton" onclick="loadData()">Load Team</button>
     <br>
     <textarea id="dataField" rows="10" cols="50"></textarea>
 
 
+    <button href="#" class="myButton" onclick="drawChart()">Show graph</button>
+
+
+
+
 </div>
+
+<div id="myChart" style="max-width:700px; height:400px"></div>
+
+
+
 
 <!--
  1. Lav en selector ligesom i semesterprojekt
@@ -72,4 +76,6 @@
 
 
 </body>
+
+
 </html>

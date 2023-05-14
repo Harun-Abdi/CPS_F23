@@ -5,7 +5,7 @@ import java.sql.*;
         public static Connection c;
 
         static String user = "root";
-        static String password = "Vithe!098";
+        static String password = "your_new_password";
         static String url = "jdbc:mysql://localhost:3306/";
 
         public static void main(String[] args) {
@@ -77,6 +77,7 @@ import java.sql.*;
             }
         }
         // Send data TO Database
+        // Hvis dataen allerede eksiterer i db så lad hver med at smide den ind
         public static void setData(String teamName, String liga, int year, int points, int position){
             String statement = "INSERT INTO stats_table (teamName, liga, year, points, position) VALUES ('" + teamName + "', '" + liga + "', '" + year + "', '" + points + "', '" + position + "');";
             try {
