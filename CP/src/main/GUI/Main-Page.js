@@ -3,7 +3,7 @@ function loadCurrentState() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             //get element by id = skal være id på vores selector i stedet for
-            document.getElementById("Liverpool").innerHTML = this.responseText;
+            document.getElementById("Teams").innerHTML = this.responseText;
         }
     };
     xhttp.open("GET", "http://localhost:8001/team=" +document.getElementById("Liverpool").value , true); // post istedet for get

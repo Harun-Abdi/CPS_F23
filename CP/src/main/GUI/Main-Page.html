@@ -18,7 +18,32 @@
 <h3 > Select a team </h3>
 <div class="container">
 
-    <button href="#" class="myButton" value="40" id="Liverpool" type="button" onclick="loadCurrentState()"> Liverpool</button>
+    <select id="Teams" onchange="loadCurrentState()">
+        <option selected disabled > Choose Operation ... </option>
+        <option value="40">Liverpool</option>
+        <option value="50">Manchester City</option>
+        <option value="33">Manchester United</option>
+        <option value="49">Chelsea</option>
+        <option value="46">Leicester</option>
+        <option value="47">Tottenham</option>
+        <option value="39">Wolves</option>
+        <option value="42">Arsenal</option>
+        <option value="62">Sheffield United</option>
+        <option value="44">Burnley</option>
+        <option value="41">Southampton</option>
+        <option value="45">Everton</option>
+        <option value="34">Newcastle</option>
+        <option value="52">Crystal Palace</option>
+        <option value="51">Brighton</option>
+        <option value="48">West Ham</option>
+        <option value="66">Aston Villa</option>
+        <option value="35">Bournemouth</option>
+        <option value="38">Watford</option>
+        <option value="71">Norwich</option>
+
+    </select>
+
+
 
     <button href="#" class="myButton" onclick="fetchDataFromDatabase()">Load Data</button>
 
@@ -39,25 +64,6 @@
  - Selector er manuelt skrevet op
  - Kunne skrives automatik om så vi ikke behøvede det
 -->
- <select id="Teams" onchange="loadCurrentState()">
-     <option selected disabled > Choose Operation ... </option>
-     <option value="40">Liverpool</option>
-     <option value="50">Manchester City</option>
-     <option value="33">Manchester United</option>
-     <option value="49">Chelsea</option>
-     <option value="46">Leicester</option>
-     <option value="47">Tottenham</option>
-     <option value="39">Wolves</option>
-     <option value="42">Arsenal</option>
-     <option value="62">Sheffield United</option>
-     <option value="PutWarehouseOperationActivate">PutWarehouseOperationActivate</option>
-     <option value="PickAssemblyOperationActivate">PickAssemblyOperationActivate</option>
-     <option value="PickWarehouseOperationActivate">PickWarehouseOperationActivate</option>
-     <option value="PutWarehouseOperationActivate">PutWarehouseOperationActivate</option>
-     <option value="PickAssemblyOperationActivate">PickAssemblyOperationActivate</option>
-     <option value="PickWarehouseOperationActivate">PickWarehouseOperationActivate</option>
-     <option value="PutWarehouseOperationActivate">PutWarehouseOperationActivate</option>
- </select>
 
  !-->
 
