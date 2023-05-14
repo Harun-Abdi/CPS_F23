@@ -88,63 +88,6 @@ public class APIController {
        System.out.println(name + " " + group + " " +  points + " " + season + " " + rank);
        DBController.setData(name,group,season,points,rank);
 
-
-       // Split det vi er interessert i:
-
-
-       
-       // Navn på holdet
-       // ligaen
-       // Årstal
-       // point
-       // Position i ligaen
-
-       // smid det i database tabel metode klader dbhandler metode
-       // få db til at retunerer værdierne til GUI
-       // db returner values
-
-
-
-
-
    }
-   /*
-    public static String handlePostRequest(String json) throws IOException, JSONException {
-//String json = "{\"State\":1,\"Program name\":\"MoveToAssemblyOperation\"}";
-        System.out.println("landet");
-        RequestBody body = RequestBody.create(JSON, json);
-        Request request = new Request.Builder()
-                .url(SERVER_URL )
-                .put(body)
-                .build();
-
-        Response response = client.newCall(request).execute();
-        //System.out.println(response.body().string());
-
-        String responseBody = response.body().string();
-        //String cleanedInput = responseBody.replaceAll("[{}]", "");
-
-
-        JSONObject jsonObject = new JSONObject(responseBody);
-
-        String teamName = jsonObject.getString("name");
-        String liga = jsonObject.getString("group");
-        int year = jsonObject.getInt("season");
-        int points = jsonObject.getInt("points");
-        int position = jsonObject.getInt("rank");
-
-        System.out.println("Team name: " + teamName);
-        System.out.println("League" + liga);
-        System.out.println("Year: " + year);
-        System.out.println("Points: " + points);
-        System.out.println("position: " + position);
-
-        //DBController.setData();
-
-
-        return json;
-    }
-
-    */
-   }
+}
 
