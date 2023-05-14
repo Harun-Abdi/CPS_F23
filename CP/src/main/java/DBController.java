@@ -74,7 +74,8 @@ import java.sql.*;
          * We create out table
          */
         public static void initialiseTable() {
-            String initializerTable = "CREATE TABLE stats_table (\n" +
+            String tableName = "stats_table";
+            String initializerTable = "CREATE TABLE IF NOT EXISTS " + tableName + " (\n" +
                     "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                     "teamName VARCHAR(255) NOT NULL UNIQUE,\n" +
                     "liga VARCHAR(255) NOT NULL,\n" +
@@ -82,12 +83,26 @@ import java.sql.*;
                     "points INT NOT NULL,\n" +
                     "position INT NOT NULL\n" +
                     ");";
+
             try {
-                DBController.getConnection("jdbc:mysql://localhost:3306/Information", user, password).prepareStatement(initializerTable).executeUpdate();
+                Connection connection = DBController.getConnection("jdbc:mysql://localhost:3306/Information", user, password);
+                if (!tableExists(connection, tableName)) {
+                    connection.prepareStatement(initializerTable).executeUpdate();
+                    System.out.println("Table created successfully.");
+                } else {
+                    System.out.println("Table already exists.");
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
+
+        private static boolean tableExists(Connection connection, String tableName) throws SQLException {
+            DatabaseMetaData metaData = connection.getMetaData();
+            ResultSet resultSet = metaData.getTables(null, null, tableName, null);
+            return resultSet.next();
+        }
+
 
         /**
          * Method for inserting data to the database
