@@ -18,7 +18,10 @@ import java.sql.*;
            initialiseTable();
         }
 
-        //DB connection
+        /**
+         *
+         * Database Connection
+         */
         public static Connection getConnection(String url, String user, String password) {
             try {
                 if (c == null) {
@@ -31,8 +34,11 @@ import java.sql.*;
             return c;
         }
 
-        // Laver databasen
-        // Tjekker om databasen findes, hvis ja så brug samme database, hvis nej så lav en database med det navn
+        /**
+         * We initialise our database.
+         * We also check whether the database already exsits and if it does then we want to use it
+         * If not then create a database with that name
+         */
         public static void initialiseDatabase() {
             Connection connection = getConnection("jdbc:mysql://localhost:3306/", user, password);
 
@@ -64,10 +70,12 @@ import java.sql.*;
         }
 
 
-        //Laver tabel
-        // Kun lav tabel hvis den ikke findes
+        /**
+         * We create out table
+         */
         public static void initialiseTable() {
-            String initializerTable = "CREATE TABLE stats_table (\n" +
+            String tableName = "stats_table";
+            String initializerTable = "CREATE TABLE IF NOT EXISTS " + tableName + " (\n" +
                     "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                     "teamName VARCHAR(255) NOT NULL UNIQUE,\n" +
                     "liga VARCHAR(255) NOT NULL,\n" +
@@ -75,14 +83,30 @@ import java.sql.*;
                     "points INT NOT NULL,\n" +
                     "position INT NOT NULL\n" +
                     ");";
+
             try {
-                DBController.getConnection("jdbc:mysql://localhost:3306/Information", user, password).prepareStatement(initializerTable).executeUpdate();
+                Connection connection = DBController.getConnection("jdbc:mysql://localhost:3306/Information", user, password);
+                if (!tableExists(connection, tableName)) {
+                    connection.prepareStatement(initializerTable).executeUpdate();
+                    System.out.println("Table created successfully.");
+                } else {
+                    System.out.println("Table already exists.");
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
-        // Send data TO Database
-        // Hvis dataen allerede eksiterer i db så lad hver med at smide den ind
+
+        private static boolean tableExists(Connection connection, String tableName) throws SQLException {
+            DatabaseMetaData metaData = connection.getMetaData();
+            ResultSet resultSet = metaData.getTables(null, null, tableName, null);
+            return resultSet.next();
+        }
+
+
+        /**
+         * Method for inserting data to the database
+         */
         public static void setData(String teamName, String liga, int year, int points, int position){
             String statement = "INSERT INTO stats_table (teamName, liga, year, points, position) VALUES ('" + teamName + "', '" + liga + "', '" + year + "', '" + points + "', '" + position + "');";
             try {
@@ -91,19 +115,12 @@ import java.sql.*;
                 throw new RuntimeException(e);
             }
         }
-        /*
-        public static void resetDatabase(){
-            String statement = "DROP TABLE brewer_backlog;";
-            try {
-                DBController.getConnection("jdbc:mysql://localhost:3306/Information", "***", "***").createStatement().executeUpdate(statement);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-*/
-        // Her skal GUI tage fra
 
-        public static String getData() throws JSONException {
+        /**
+         * Method for pulling the data
+         */
+
+        public static String getData() {
             PreparedStatement ps = null;
             ResultSet rs = null;
             StringBuilder sb = new StringBuilder();

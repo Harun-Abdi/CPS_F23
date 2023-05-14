@@ -18,6 +18,15 @@ public class APIController {
     private static final OkHttpClient client = new OkHttpClient();
 
 
+    /**
+     *
+     * This method first starts with creating an HTTP request that have the URL
+     * + team variable which is comes from the handler and is based on which team the user wants to fetch information about
+     *
+     * The information about the team is then sent back. HOWEVER the information is sent in nested Jsons.
+     * Which is why getting the name, points, positon and so on is a quite tedious operation
+     * and also not a pretty chunk of code
+     */
 
    public static void check(String team) throws IOException, InterruptedException, URISyntaxException, JSONException {
 
@@ -40,14 +49,6 @@ public class APIController {
 
        JSONObject json = new JSONObject(responseBody);
 
-       // nested json
-
-       /*
-        However, in the given JSON structure,
-        the "name" key is nested inside other objects and arrays.
-        To extract the value of "name" correctly, you need to navigate through the JSON structure.
-        Here's an updated code snippet that should work for your case:
-        */
        String name = json.getJSONArray("response")
                .getJSONObject(0)
                .getJSONObject("league")
