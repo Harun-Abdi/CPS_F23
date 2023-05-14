@@ -1,3 +1,7 @@
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.*;
 
     public class DBController {
@@ -5,7 +9,7 @@ import java.sql.*;
         public static Connection c;
 
         static String user = "root";
-        static String password = "your_new_password";
+        static String password = "Vithe!098";
         static String url = "jdbc:mysql://localhost:3306/";
 
         public static void main(String[] args) {
@@ -65,7 +69,7 @@ import java.sql.*;
         public static void initialiseTable() {
             String initializerTable = "CREATE TABLE stats_table (\n" +
                     "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                    "teamName VARCHAR(255) NOT NULL,\n" +
+                    "teamName VARCHAR(255) NOT NULL UNIQUE,\n" +
                     "liga VARCHAR(255) NOT NULL,\n" +
                     "year INT NOT NULL,\n" +
                     "points INT NOT NULL,\n" +
@@ -99,11 +103,12 @@ import java.sql.*;
 */
         // Her skal GUI tage fra
 
-        public static String getData() {
+        public static String getData() throws JSONException {
             PreparedStatement ps = null;
             ResultSet rs = null;
             StringBuilder sb = new StringBuilder();
             String statement = "SELECT * FROM stats_table;";
+
 
             try {
                 ps = getConnection("jdbc:mysql://localhost:3306/Information", user, password).prepareStatement(statement);
@@ -114,7 +119,9 @@ import java.sql.*;
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return sb.toString();
+
+
+           return sb.toString();
         }
 
 

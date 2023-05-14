@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>HEllo</title>
     <script src=Main-Page.js></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+
 
 </head>
 
@@ -54,7 +61,8 @@
 
 </div>
 
-<div id="myChart" style="max-width:700px; height:400px"></div>
+<div id="barchart_material" style="width: 900px; height: 500px;"></div>
+
 
 
 
@@ -69,7 +77,6 @@
  - Kunne skrives automatik om så vi ikke behøvede det
 -->
 
- !-->
 
 
 

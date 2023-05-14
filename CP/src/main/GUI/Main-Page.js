@@ -8,7 +8,6 @@ function loadCurrentState() {
     xhttp.send();
 }
 
-
 function loadData() {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -16,56 +15,34 @@ function loadData() {
             const dataField = document.getElementById("dataField");
             dataField.value = this.responseText;
             console.log("works")
+            console.log(this.responseText)
+
         }
     };
     xhttp.open("GET", "http://localhost:8001/data", true); // post istedet for get
     xhttp.send();
 }
 
+        function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Team', 'Points'],
+        ['2014', 1000, 400, 200],
+        ['2015', 1170, 460, 250],
+        ['2016', 660, 1120, 300],
+        ['2017', 1030],
+            []
+        ]);
 
-function fetchDataFromDatabase() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8001/data', true);
-    xhr.onload = function() {
-        if (this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            // Pass the data to the function that creates the chart
-            createChart(data);
-        }
+        var options = {
+        chart: {
+        title: 'Company Performance',
+        subtitle: 'Premier League - Season 2019',
+    },
+        bars: 'vertical' // Required for Material Bar Charts.
     };
-    xhr.send();
-}
-function createChart(data) {
-    // Load the Visualization API and the corechart package.
-    google.charts.load('current', {'packages':['corechart']});
 
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
 
-    // Callback that creates and populates a data table,
-    // instantiates the chart, passes in the data and
-    // draws it.
-    function drawChart() {
-
-        // Create the data table.
-        const dataTable = new google.visualization.DataTable();
-        dataTable.addColumn('string', 'Team');
-        dataTable.addColumn('number', 'Wins');
-
-        // Add data to the table
-        data.forEach(function(team) {
-            dataTable.addRow([teamName, points]);
-        });
-
-        // Set chart options
-        const options = {
-            'title': 'Team Wins',
-            'width': 400,
-            'height': 300
-        };
-
-        // Instantiate and draw the chart, passing in the data and options.
-        const chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-        chart.draw(dataTable, options);
+        chart.draw(data, google.charts.Bar.convertOptions(options));
     }
-}
+
