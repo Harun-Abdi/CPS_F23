@@ -1,0 +1,42 @@
+.myButton {
+    box-shadow:inset 0px 1px 0px 0px #97c4fe;
+    background: #3d94f6 linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+    border-radius:6px;
+    border:1px solid #337fed;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #1570cd;
+}
+.myButton:hover {
+    background: #1e62d0 linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+.myButton{
+    animation:bouncy 5s infinite linear;
+    position:relative;
+}
+@keyframes bouncy {
+0%{top:0em}
+40%{top:0em}
+43%{top:-0.9em}
+46%{top:0em}
+48%{top:-0.4em}
+50%{top:0em}
+100%{top:0em;}
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* or any other height you want */
+}
+

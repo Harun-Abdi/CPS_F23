@@ -4,11 +4,32 @@
     <meta charset="UTF-8">
     <title>HEllo</title>
     <script src=Main-Page.js></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 </head>
-
+<link rel="stylesheet" type="text/css" href="style-page.css">
+<div id="chart_div"></div>
 <body>
+<style>
+    body {
+        background-color: #236ad5;
+    }
+</style>
+<h3 > Select a team </h3>
+<div class="container">
 
-<h3> Select a team </h3>
+    <button href="#" class="myButton" value="40" id="Liverpool" type="button" onclick="loadCurrentState()"> Liverpool</button>
+
+    <button href="#" class="myButton" onclick="fetchDataFromDatabase()">Load Data</button>
+
+
+    <button href="#" class="myButton" onclick="loadData()">Load Data</button>
+    <br>
+    <textarea id="dataField" rows="10" cols="50"></textarea>
+
+
+</div>
+
 
 <!--
  1. Lav en selector ligesom i semesterprojekt
@@ -30,13 +51,7 @@
  !-->
 
 
-<button value="40" id="Liverpool" type="button" onclick="loadCurrentState()"> Liverpool</button>
 
-
-
-<button onclick="loadData()">Load Data</button>
-<br>
-<textarea id="dataField" rows="10" cols="50"></textarea>
 
 
 </body>
