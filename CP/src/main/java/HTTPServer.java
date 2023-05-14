@@ -18,9 +18,7 @@ public class HTTPServer {
             server.setExecutor(threadPoolExecutor);
 
             server.start(); //This is the heart of the system, where we assign the server-object a thread-pool, to keep it running
-            DBController.getConnection("jdbc:mysql://localhost:3306/", "root", "YOUR PASSWORD");
-            DBController.initialiseDatabase();
-            DBController.initialiseTable();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

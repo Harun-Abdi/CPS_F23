@@ -27,28 +27,28 @@ public class DBControllerTest {
 
     @Test
     public void testSetAndGet() throws JSONException {
-        // inserting data in the database
+        // Inserting data in the database
         DBController.setData("team1", "liga1", 2022, 10, 1);
         DBController.setData("team2", "liga2", 2022, 8, 2);
 
-        // retrieving the data from database
+        // Retrieving the data from database
         String result = DBController.getData();
 
-        // see if the retrieved data is as expected
+        // See if the retrieved data is as expected
         String expected = "1, team1, liga1, 2022, 10\n2, team2, liga2, 2022, 8\n";
         assertEquals(expected, result);
     }
 
     @Test
     public void testInitialiseTable() throws SQLException {
-        // drop the table if it exists
+        // Drop the table if it exists
         Statement dropStatement = connection.createStatement();
         dropStatement.executeUpdate("DROP TABLE IF EXISTS stats_table");
 
-        // call initialiseTable
+        // Call initialiseTable
         DBController.initialiseTable();
 
-        // check if the table exists
+        // Check if the table exists
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SHOW TABLES LIKE 'stats_table'");
         boolean tableExists = resultSet.next();

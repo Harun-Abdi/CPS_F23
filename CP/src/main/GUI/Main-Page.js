@@ -14,6 +14,8 @@ function loadCurrentState() {
 /**
  * Loads the data into a textfield area
  */
+
+//bar chart
 function loadData() {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {

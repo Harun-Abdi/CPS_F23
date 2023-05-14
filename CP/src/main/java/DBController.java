@@ -10,7 +10,7 @@ import java.sql.*;
 
         static String user = "root";
         static String password = "Vithe!098";
-        static String url = "jdbc:mysql://localhost:3306/";
+        static String url = "jdbc:mysql://localhost:3306/Information";
 
         public static void main(String[] args) {
             getConnection(url, user, password);
